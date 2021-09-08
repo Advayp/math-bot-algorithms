@@ -1,44 +1,71 @@
-import { GetFunction, Factorize } from "./utils";
+export const GetFunction = (coefficients) => {
+  const Func = (x) => {
+    let res = 0;
+    let end = coefficients.length - 1;
+    for (const coefficient of coefficients) {
+      res += Math.pow(x, end) * coefficient;
+      end -= 1;
+    }
 
-const FindRootsWell = (...coefficients) => {
+    return res;
+  };
+
+  return Func;
+};
+
+export const Factorize = (num) => {
+  let factors = [];
+
+  for (let i = 1; i < num + 1; i++) {
+    if (num % i == 0) {
+      factors.push(i);
+    }
+  }
+
+  return factors;
+};
+
+export const FindRootsWell = (coefficients) => {
   let a = Factorize(coefficients[0]);
-  let b = Factorize(coefficients[coefficients.length - 1])
+  let b = Factorize(coefficients[coefficients.length - 1]);
 
   let possibleRoots = [];
-  let actualRoots = []
+  let actualRoots = [];
 
   const func = GetFunction(coefficients);
 
   for (const item of a) {
-    possibleRoots.push({factor: item, factors: b});
+    possibleRoots.push({ factor: item, factors: b });
   }
 
   for (const possibleRoot of possibleRoots) {
     for (const i in possibleRoot.factors) {
       if (func(i / possibleRoot.factor) == 0) {
-        actualRoots.push(i / possibleRoot.factor)
-      }
-      else if (func(-i / possibleRoot.factor) == 0) {
-        actualRoots.push(-i / possibleRoot.factor)
+        actualRoots.push(i / possibleRoot.factor);
+      } else if (func(-i / possibleRoot.factor) == 0) {
+        actualRoots.push(-i / possibleRoot.factor);
       }
     }
   }
-}
-
-const FindRootsFast = (...coefficients, start = -10, end = -10, step = 1) => {
-  const Func = GetFunction(...coefficients)
-  
-  let res = []
-
-  for (let i = 0; i < coefficients.length; i++) {
-    if (Func(i) == 0) {
-      res.push(i)
-    }
-  }
-
-  return res
 };
 
+export const FindRootsFast = (
+  coefficients,
+  start = -10,
+  end = 10,
+  step = 1
+) => {
+  const Func = GetFunction(coefficients);
 
-export default FindRootsFast;
-export default FindRootsWell;
+  let res = [];
+  for (let i = start; i < end; i += step) {
+    console.log(Func(i));
+    if (Func(i) == 0) {
+      res.push(i);
+    }
+  }
+
+  return res;
+};
+
+console.log(FindRootsFast([1, -2, -3]));
