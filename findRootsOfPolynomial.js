@@ -1,3 +1,6 @@
+// Returns a function which describes a polynomial
+// based on coefficients.
+// For example, 1, -2, -3 => x^2 - 2x - 3
 export const GetFunction = (coefficients) => {
   const Func = (x) => {
     let res = 0;
@@ -13,6 +16,10 @@ export const GetFunction = (coefficients) => {
   return Func;
 };
 
+/**
+ * @param  {The number to factor} num
+ * @returns {The factors of a number}
+ */
 export const Factorize = (num) => {
   let factors = [];
 
@@ -25,6 +32,8 @@ export const Factorize = (num) => {
   return factors;
 };
 
+// Finds all rational roots using the
+// rational root theorem
 export const FindRootsWell = (coefficients) => {
   let a = Factorize(coefficients[0]);
   let b = Factorize(coefficients[coefficients.length - 1]);
@@ -49,6 +58,8 @@ export const FindRootsWell = (coefficients) => {
   }
 };
 
+// Finds roots by looping through a start and end point
+// Usually much faster than FindRootsWell
 export const FindRootsFast = (
   coefficients,
   start = -10,
