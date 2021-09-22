@@ -1,6 +1,6 @@
 const Mean = (dataSet = "") => {
   const numbersString = dataSet.split(",");
-  const numbers = numbersString.map((element, idx) => {
+  const numbers = numbersString.map((element, _) => {
     return parseFloat(element);
   });
 

@@ -1,11 +1,9 @@
-const ERR_STRING = "error";
-
 const _Log = (base, value) => {
   // Change of base rule
   return Math.log10(value) / Math.log10(base);
 };
 
-const ComputeLog = (line) => {
+export const ComputeLog = (line) => {
   const parsedLine = _ParseLog(line);
 
   const [base, value, error] = parsedLine;
@@ -41,4 +39,4 @@ const _ParseLog = (line) => {
   return [...numbers, null];
 };
 
-console.log(ComputeLog("log(4, 64"));
+// console.log(ComputeLog("log(4, 64"));
