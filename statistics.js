@@ -29,5 +29,10 @@ export const Median = (dataSet = "") => {
   return numbers[Math.floor(length / 2)];
 };
 
+export const Range = (dataSet = "") => {
+  const numbers = GetNumbers(dataSet);
+  return Math.max(...numbers) - Math.min(...numbers);
+};
+
 console.log(Mean("1, 2, 3, 4"));
 console.log(Median("6, 5, 4, 2, 7, 3, 1"));
