@@ -1,10 +1,12 @@
-const Mean = (dataSet = "") => {
-  const numbersString = dataSet.split(",");
-  const numbers = numbersString.map((element, _) => {
-    return parseFloat(element);
-  });
+const GetNumbers = (dataSet = "") => {
+  const numberString = dataSet.split(",");
+  const numbers = numberString.map((element, _) => parseFloat(element));
 
-  console.log(numbers);
+  return numbers;
+};
+
+export const Mean = (dataSet = "") => {
+  const numbers = GetNumbers(dataSet);
 
   let sum = 0;
 
@@ -15,4 +17,22 @@ const Mean = (dataSet = "") => {
   return sum / numbers.length;
 };
 
+export const Median = (dataSet = "") => {
+  const numbers = GetNumbers(dataSet);
+  numbers.sort();
+  const length = numbers.length;
+
+  if (length % 2 === 0) {
+    return Mean(`${numbers[length / 2 - 1]}, ${numbers[length / 2]}`);
+  }
+
+  return numbers[Math.floor(length / 2)];
+};
+
+export const Range = (dataSet = "") => {
+  const numbers = GetNumbers(dataSet);
+  return Math.max(...numbers) - Math.min(...numbers);
+};
+
 console.log(Mean("1, 2, 3, 4"));
+console.log(Median("6, 5, 4, 2, 7, 3, 1"));

@@ -39,4 +39,4 @@ const _ParseLog = (line) => {
   return [...numbers, null];
 };
 
-// console.log(ComputeLog("log(4, 64"));
+console.log(ComputeLog("log(2, 8)"));
